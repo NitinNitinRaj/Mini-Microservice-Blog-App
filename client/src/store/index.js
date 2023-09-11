@@ -1,28 +1,28 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { postFormReducer } from "./slices/postFormSlice";
+import { setupListeners } from "@reduxjs/toolkit/dist/query";
 
-import { setTitle } from "./slices/postFormSlice";
 import { commentsApi } from "./apis/commentsApi";
 import { postsApi } from "./apis/postsApi";
-import { setupListeners } from "@reduxjs/toolkit/dist/query";
+import { postFormReducer, setTitle } from "./slices/postFormSlice";
+import { queryApi } from "./apis/queryApi";
 const store = configureStore({
   reducer: {
     postForm: postFormReducer,
     [commentsApi.reducerPath]: commentsApi.reducer,
     [postsApi.reducerPath]: postsApi.reducer,
+    [queryApi.reducerPath]: queryApi.reducer,
   },
   middleware: (getDefaultMiddleWare) => {
     return getDefaultMiddleWare()
       .concat(commentsApi.middleware)
-      .concat(postsApi.middleware);
+      .concat(postsApi.middleware)
+      .concat(queryApi.middleware);
   },
 });
 
 setupListeners(store.dispatch);
 
-export { store, setTitle };
-export {
-  useAddCommentsMutation,
-  useFetchCommentsQuery,
-} from "./apis/commentsApi";
-export { useAddPostMutation, useFetchPostsQuery } from "./apis/postsApi";
+export { useAddCommentsMutation } from "./apis/commentsApi";
+export { useAddPostMutation } from "./apis/postsApi";
+export { useFetchPostQuery } from "./apis/queryApi";
+export { setTitle, store };

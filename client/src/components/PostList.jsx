@@ -1,8 +1,8 @@
-import { useFetchPostsQuery } from "../store";
+import { useFetchPostQuery } from "../store";
 import Post from "./PostItem";
 
 export default function PostList() {
-  const { data, isError, isLoading } = useFetchPostsQuery();
+  const { data, isError, isLoading } = useFetchPostQuery();
   let content;
   if (isError) {
     content = <div>Error loading post</div>;
@@ -10,7 +10,14 @@ export default function PostList() {
     content = <div>Loading....</div>;
   } else {
     content = data.map((post) => {
-      return <Post post={post} key={post.id} />;
+      return (
+        <Post
+          postId={post.id}
+          title={post.title}
+          comments={post.comments}
+          key={post.id}
+        />
+      );
     });
   }
   return (

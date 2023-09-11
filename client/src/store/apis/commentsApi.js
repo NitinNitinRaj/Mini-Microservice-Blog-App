@@ -5,21 +5,7 @@ const commentsApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:4001" }),
   endpoints(builder) {
     return {
-      fetchComments: builder.query({
-        providesTags: (result, error, postId) => {
-          return [{ type: "comment", id: postId }];
-        },
-        query: (postId) => {
-          return {
-            method: "GET",
-            url: `/posts/${postId}/comments`,
-          };
-        },
-      }),
       addComments: builder.mutation({
-        invalidatesTags: (result, error, comment) => {
-          return [{ type: "comment", id: comment.postId }];
-        },
         query: ({ postId, content }) => {
           return {
             method: "POST",
@@ -32,5 +18,5 @@ const commentsApi = createApi({
   },
 });
 
-export const { useFetchCommentsQuery, useAddCommentsMutation } = commentsApi;
+export const { useAddCommentsMutation } = commentsApi;
 export { commentsApi };

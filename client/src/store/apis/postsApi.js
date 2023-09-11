@@ -5,28 +5,15 @@ const postsApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:4000" }),
   endpoints(builder) {
     return {
-      fetchPosts: builder.query({
-        providesTags: (result, error, args) => {
-          return [{ type: "Posts" }];
-        },
-        query: () => {
-          return { method: "GET", url: "/posts" };
-        },
-        transformResponse: (response) => {
-          return Object.values(response);
-        },
-      }),
       addPost: builder.mutation({
         query: (title) => {
           return { method: "POST", url: "/posts", body: { title: title } };
         },
-        invalidatesTags: (result, error, args) => {
-          return [{ type: "Posts" }];
-        },
+        transformResponse: (response) => Object.values(response),
       }),
     };
   },
 });
 
-export const { useFetchPostsQuery, useAddPostMutation } = postsApi;
+export const { useAddPostMutation } = postsApi;
 export { postsApi };
