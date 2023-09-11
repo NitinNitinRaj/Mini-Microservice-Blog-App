@@ -1,7 +1,7 @@
 import { useFetchCommentsQuery } from "../store";
 import CreateComment from "./CreateComment";
 
-export default function Post({ post }) {
+export default function PostItem({ post }) {
   const { data, isLoading, isError } = useFetchCommentsQuery(post.id);
   let content;
   if (isError) {

@@ -13,11 +13,7 @@ const postsApi = createApi({
           return { method: "GET", url: "/posts" };
         },
         transformResponse: (response) => {
-          let data = [];
-          for (let key in response) {
-            data.push(response[key]);
-          }
-          return data;
+          return Object.values(response);
         },
       }),
       addPost: builder.mutation({

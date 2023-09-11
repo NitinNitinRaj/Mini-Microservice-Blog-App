@@ -1,11 +1,11 @@
 import CreatePost from "./components/CreatePost";
-import Posts from "./components/Posts";
+import PostList from "./components/PostList";
 
 export default function App() {
   return (
     <div className="container h-screen m-auto">
       <CreatePost />
-      <Posts />
+      <PostList />
     </div>
   );
 }

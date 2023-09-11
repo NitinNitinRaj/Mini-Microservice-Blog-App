@@ -1,7 +1,7 @@
 import { useFetchPostsQuery } from "../store";
-import Post from "./Post";
+import Post from "./PostItem";
 
-export default function Posts() {
+export default function PostList() {
   const { data, isError, isLoading } = useFetchPostsQuery();
   let content;
   if (isError) {
@@ -14,7 +14,10 @@ export default function Posts() {
     });
   }
   return (
-    <div className="max-h-[calc(100vh-215px)] overflow-y-auto">
+    <div className="max-h-[calc(100vh-235px)] overflow-y-auto relative">
+      <h1 className="text-3xl text-center sticky top-0  border-b p-2 bg-gray-50">
+        Posts
+      </h1>
       <div className="flex flex-row flex-wrap justify-center">{content}</div>
     </div>
   );

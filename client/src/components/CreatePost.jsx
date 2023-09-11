@@ -14,7 +14,7 @@ export default function CreatePost() {
     dispatch(setTitle(""));
   };
   return (
-    <div className="flex justify-start p-3 mx-28 border-b">
+    <div className="flex justify-center py-3 m-auto border-b">
       <div className="flex flex-col">
         <h3 className="text-4xl font-semibold">Create Post</h3>
         <form
