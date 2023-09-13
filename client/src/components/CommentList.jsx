@@ -2,9 +2,9 @@ function CommentList({ comments }) {
   const content = comments.map((comment) => (
     <li className="p-0.5 ml-5" key={comment.id}>
       {comment.status === "pending"
-        ? "Comment Status Pending."
+        ? "This Comment is awaiting moderation."
         : comment.status === "rejected"
-        ? "Comment Rejected."
+        ? "This Comment has been rejected."
         : comment.content}
     </li>
   ));
