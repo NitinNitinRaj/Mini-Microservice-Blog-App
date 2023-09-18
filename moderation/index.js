@@ -11,7 +11,7 @@ app.post("/events", (req, res) => {
     const status = data.content.toLowerCase().includes("orange")
       ? "rejected"
       : "approved";
-    axios.post("http://localhost:4005/events", {
+    axios.post("http://event-bus-srv:4005/events", {
       type: "CommentModerated",
       data: { ...data, status },
     });
