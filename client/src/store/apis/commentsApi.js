@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
 
 const commentsApi = createApi({
   reducerPath: "comments",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:4001" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "http://posts.com" }),
   endpoints(builder) {
     return {
       addComments: builder.mutation({
